@@ -1,0 +1,12 @@
+{
+  "name": "anonymize-woocommerce",
+  "version": "1.0.0",
+  "description": "Tool to anonymize WooCommerce customer and order data",
+  "main": "index.js",
+  "scripts": {
+    "makepot": "composer run-script makepot",
+    "zip": "composer run-script zip"
+  },
+  "author": "helgatheviking",
+  "license": "GPL-3.0-or-later"
+}

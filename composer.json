@@ -1,0 +1,47 @@
+{
+  "name": "helgatheviking/anonymize-woocommerce",
+  "description": "Anonymize WooCommerce customer and order data.",
+  "homepage": "https://github.com/helgatheviking/anonymize-woocommerce",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0-or-later",
+  "require-dev": {
+      "woocommerce/woocommerce-sniffs": "^1.0.0",
+      "wp-cli/i18n-command": "^2.5",
+      "wp-cli/dist-archive-command": "dev-main"
+  },
+  "scripts": {
+    "makepot-audit": [
+      "wp --allow-root i18n make-pot . languages/anonymize-woocommerce.pot --slug=anonymize-woocommerce --exclude=\".github,.wordpress-org,node_modules,vendor,build,deploy\""
+    ],
+    "makepot": [
+      "@makepot-audit --skip-audit"
+    ],
+    "phpcs": [
+        "phpcs . -s -p -n"
+    ],
+    "phpcs-pre-commit": [
+      "phpcs . -s -p -n"
+    ],
+    "phpcb": [
+        "phpcbf ."
+    ],
+    "zip" : [
+      "wp dist-archive . ./deploy --create-target-dir"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+        "composer/installers": true,
+        "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "extra": {
+    "scripts-description": {
+        "makepot-audit": "Make a .pot file with audit to find possible mistakes in translatable strings",
+        "makepot": "Make a .pot file without checking for mistakes",
+        "phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
+        "phpcb": "Fix coding standards warnings/errors automatically with PHP Code Beautifier",
+        "zip": "Generate a compressed zip file for distribution"
+    }
+  }
+}
