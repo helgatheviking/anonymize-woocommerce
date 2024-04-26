@@ -1,6 +1,8 @@
 # Anonymize Woocommerce
 Adds WooCommerce tool to anonymize customer and order data.
 
+⚠️ Currently this tool is blocked by https://github.com/woocommerce/woocommerce/issues/46974
+
 ### Usage
 
 In your WordPress admin area, go to WooCommerce > Status > Tools. Click on "Start anonymizing".
