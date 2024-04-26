@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/helgatheviking/anonymize-woocommerce/
  * Description: A tool to anonymize WooCommerce customer and order data.
  * Author: Kathy Darling
- * Version: 1.0.0
+ * Version: 1.0.0-alpha.1
  * Author URI: http://kathyisawesome.com
  * License: GPL-3.0
  * Text Domain: anonymize-woocommerce
