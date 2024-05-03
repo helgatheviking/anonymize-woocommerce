@@ -135,7 +135,7 @@ function stop_processors() {
 }
 
  /**
- * Register our batch processor.
+ * Register our batch processors.
  * 	
  * @param object|null $processor The processor instance given by the dependency injection container, or null if none was obtained.
  * @param string $processor_class_name The full class name of the processor.
@@ -144,6 +144,9 @@ function stop_processors() {
 function get_batch_processor( $processor, $process_class_name ) {
 	if ( 'AnonymizeWooCommerce\AnonymizeCustomerProcessor' === $process_class_name ) {
 		return new AnonymizeCustomerProcessor();
+	}
+	if ( 'AnonymizeWooCommerce\AnonymizeOrderProcessor' === $process_class_name ) {
+		return new AnonymizeOrderProcessor();
 	}
 
 	return $processor;
