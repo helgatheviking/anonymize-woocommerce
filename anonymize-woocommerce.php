@@ -88,8 +88,8 @@ function register_tool( $tools ) {
 	if ( current_user_can( 'erase_others_personal_data' ) || ! current_user_can( 'delete_users' ) ) {
 
     	if ( $customer_processor_enqueued || $order_processor_enqueued ) {
-    		$tools['stop_anonmyizing_data'] = array(
-    			'name'     => __( 'Stop anonmyizing customer and order data', 'anonymize-woocommerce' ),
+    		$tools['stop_anonymizing_data'] = array(
+    			'name'     => __( 'Stop anonymizing customer and order data', 'anonymize-woocommerce' ),
     			'button'   => __( 'Stop anonymizing', 'anonymize-woocommerce' ),
     			'desc'     => __( 'This will stop the background process that anonmyizes the user and order data.', 'anonymize-woocommerce' ),
     				'callback' => __NAMESPACE__ . '\stop_processors',
