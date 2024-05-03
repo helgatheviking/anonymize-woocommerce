@@ -57,10 +57,18 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 			\get_users(
 				array(
 					'role__not_in' => array( 'administrator', 'shop_manager' ),
-					'meta_key'     => '_anonymized',
-					'meta_value'   => 'yes',
-					'meta_compare' => '! = ',
-					'return'       => 'ID',
+					'meta_query' => array(
+						'relation' => 'OR',
+						array(
+							'key'     => '_anonymized',
+							'compare' => 'NOT EXISTS', // Check if the meta key does not exist
+						),
+						array(
+							'key'     => '_anonymized',
+							'value'   => 'yes',
+							'compare' => '!=', // Check if the meta value is not 'yes'
+						),
+					),
 				)
 			)
 		);
@@ -78,13 +86,24 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 		global $wpdb;
 
 
-			'role__not_in' => array( 'administrator', 'shop_manager' ),
-			'meta_key'     => '_anonymized',
-			'meta_value'   => 'yes',
-			'meta_compare' => '! = ',
-		) );
 		return \get_users(
 			array(
+				'number' => $size,
+				'role__not_in' => array( 'administrator', 'shop_manager' ),
+				'meta_query' => array(
+					'relation' => 'OR',
+					array(
+						'key'     => '_anonymized',
+						'compare' => 'NOT EXISTS', // Check if the meta key does not exist
+					),
+					array(
+						'key'     => '_anonymized',
+						'value'   => 'yes',
+						'compare' => '!=', // Check if the meta value is not 'yes'
+					),
+				),
+			)
+		);
 		  
 	}
 
