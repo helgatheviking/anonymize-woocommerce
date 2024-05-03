@@ -53,8 +53,8 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 	 * @return int Number of items pending processing.
 	 */
 	public function get_total_pending_count(): int {
-		return count( 
-			get_users(
+		return \count(
+			\get_users(
 				array(
 					'role__not_in' => array( 'administrator', 'shop_manager' ),
 					'meta_key'     => '_anonymized',
@@ -78,12 +78,13 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 		global $wpdb;
 
 
-		return get_users( array(
 			'role__not_in' => array( 'administrator', 'shop_manager' ),
 			'meta_key'     => '_anonymized',
 			'meta_value'   => 'yes',
 			'meta_compare' => '! = ',
 		) );
+		return \get_users(
+			array(
 		  
 	}
 
@@ -99,9 +100,8 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 		$ids = [];
 		
 		// IMPORTANT! Don't send email and password change notifications.
-		add_filter( 'send_email_change_email', '__return_false' );
-		add_filter( 'send_password_change_email', '__return_false' );
-
+		\add_filter( 'send_email_change_email', '__return_false' );
+		\add_filter( 'send_password_change_email', '__return_false' );
 
 		if ( empty( $batch ) ) {
 			return;
@@ -112,12 +112,12 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 				$ids[] = $user->ID;
 				$this->process_item( $user );
 			} catch ( Exception $ex ) {
-				wc_get_logger()->error( StringUtil::class_name_without_namespace( self::class ) . ": when anonymizing user with id {$user->ID}: {$ex->getMessage()}" );
+				\wc_get_logger()->error( StringUtil::class_name_without_namespace( self::class ) . ": when anonymizing user with id {$user->ID}: {$ex->getMessage()}" );
 			}
 		}
 
 		// Logging the anonymized user IDs (WooCommerce > Status > Logs > Anonymize WooCommerce).
-		wc_get_logger()->info( sprintf( 'Users anonymized: %s', implode(', ', $ids) ), array( 'source' => 'anonymize-woocommerce' ) );
+		\wc_get_logger()->info( sprintf( 'Users anonymized: %s', implode(', ', $ids) ), array( 'source' => 'anonymize-woocommerce' ) );
 	}
 
 	/**
