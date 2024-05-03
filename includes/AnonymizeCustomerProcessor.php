@@ -177,9 +177,11 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 				array( 'user_login' => $userdata['user_email'] ),
 				array( 'ID' => $result )
 			);
-
-			if ( ! $success ) {
-				throw new Exception( 'Error updating user_login for user #%d' );
+			
+			if ( false !== $success ) {
+			    \update_user_meta( $user->ID, '_anonymized', 'yes' );
+			} else {
+				throw new Exception( sprintf( 'Error updating user_login for user #%d. Reason: %s', $user->ID, $wpdb->last_error ) );
 			}
 
 		} else {
