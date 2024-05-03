@@ -83,8 +83,6 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 	 * @return array Batch of items to process, containing $size or less items.
 	 */
 	public function get_next_batch_to_process( int $size ): array {
-		global $wpdb;
-
 
 		return \get_users(
 			array(
