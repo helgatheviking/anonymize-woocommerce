@@ -101,8 +101,9 @@ class AnonymizeOrderProcessor implements BatchProcessorInterface, RegisterHooksI
 		}
 
 		foreach ( $batch as $order ) {
+			
 			try {
-				\WC_Privacy_Erasers::remove_order_personal_data( $order );
+				\do_action( 'woocommerce_remove_order_personal_data', $order ); // phpcs:ignore WooCommerce.Commenting.CommentHooks.MissingHookComment
 				$ids[] = $order->get_id();
 			} catch ( Exception $ex ) {
 				\wc_get_logger()->error( StringUtil::class_name_without_namespace( self::class ) . ": when anonymizing user with id {$user->ID}: {$ex->getMessage()}" );
