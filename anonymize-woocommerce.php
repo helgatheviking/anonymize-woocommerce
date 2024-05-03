@@ -84,21 +84,25 @@ function register_tool( $tools ) {
 
 	$customer_processor_enqueued = $batch_processor->is_enqueued( AnonymizeCustomerProcessor::class );
 	$order_processor_enqueued    = $batch_processor->is_enqueued( AnonymizeOrderProcessor::class );
+	
+	if ( current_user_can( 'erase_others_personal_data' ) || ! current_user_can( 'delete_users' ) ) {
 
-	if ( $customer_processor_enqueued || $order_processor_enqueued ) {
-		$tools['stop_anonmyizing_data'] = array(
-			'name'     => __( 'Stop anonymizing customer and order data', 'anonymize-woocommerce' ),
-			'button'   => __( 'Stop anonymizing', 'anonymize-woocommerce' ),
-			'desc'     => __( 'This will stop the background process that anonmyizes the customer and order data.', 'anonymize-woocommerce' ),
-				'callback' => __NAMESPACE__ . '\stop_processors',
-		);
-	} else {
-		$tools['start_anonmyizing_data'] = array(
-			'name'     => __( 'Anonymize customer and order data', 'anonymize-woocommerce' ),
-			'button'   => __( 'Start anonymizing', 'anonymize-woocommerce' ),
-			'desc'     => __( 'This tool will replace personally identifiable customer data. It it NOT reversable. The process will happen overtime in the background (via Action Scheduler).', 'anonymize-woocommerce' ),
-				'callback' => __NAMESPACE__ . '\start_processors',
-		);
+    	if ( $customer_processor_enqueued || $order_processor_enqueued ) {
+    		$tools['stop_anonmyizing_data'] = array(
+    			'name'     => __( 'Stop anonmyizing customer and order data', 'anonymize-woocommerce' ),
+    			'button'   => __( 'Stop anonymizing', 'anonymize-woocommerce' ),
+    			'desc'     => __( 'This will stop the background process that anonmyizes the user and order data.', 'anonymize-woocommerce' ),
+    				'callback' => __NAMESPACE__ . '\stop_processors',
+    		);
+    	} else {
+    		$tools['start_anonymizing_data'] = array(
+    			'name'     => __( 'Anonymize customer and order data', 'anonymize-woocommerce' ),
+    			'button'   => __( 'Start anonymizing', 'anonymize-woocommerce' ),
+    			'desc'     => __( '<strong class="red">Note:</strong> This tool will erase personally identifiable user data. It it not reversable. The process will happen overtime in the background (via Action Scheduler).', 'anonymize-woocommerce' ),
+    				'callback' => __NAMESPACE__ . '\start_processors',
+    		);
+    	}
+    	
 	}
 
 	return $tools;
