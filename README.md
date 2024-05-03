@@ -1,5 +1,11 @@
 # Anonymize Woocommerce
-Adds WooCommerce tool to anonymize customer and order data.
+Adds WooCommerce tool to anonymize user and order data. This will:
+
+1. Run all the WooCommerce registered privacy erasers for every user.
+2. Run the WooCommerce privacy eraser for every order.
+3. Anonymize all your user emails, logins, names, etc.
+
+This will _not_ anonymize other plugins' data.
 
 ⚠️ Currently this tool is blocked by https://github.com/woocommerce/woocommerce/issues/46974
 
