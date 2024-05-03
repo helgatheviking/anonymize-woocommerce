@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "makepot": "composer run-script makepot",
-    "zip": "composer run-script zip"
+    "zip": "composer run-script zip",
+    "betarelease": "npm run release",
+    "release": "npm run makepot && npm run zip"
   },
   "author": "helgatheviking",
   "license": "GPL-3.0-or-later"
