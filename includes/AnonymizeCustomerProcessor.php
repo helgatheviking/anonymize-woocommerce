@@ -170,7 +170,7 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 		$result = \wp_update_user( $userdata );
 	   
 		// Cannot update user_login via wp_update_user, so we do it manually.
-		if ( $result ) {
+		if ( ! \is_wp_error ( $result ) ) {
 
 			$success = $wpdb->update(
 				$wpdb->users,
@@ -185,7 +185,7 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 			}
 
 		} else {
-			throw new Exception( 'Error updating user data for user #%d' );
+			throw new Exception( sprintf( 'Error updating user data for user #%d. Reason: %s', $user->ID, $result->get_error_message() ) );
 		}
 	   
 	}
