@@ -158,7 +158,6 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 		// Build the new user data.
 		$userdata = array(
 			'ID'            => $user->ID,
-			'user_login'    => wp_privacy_anonymize_data( 'email', $user->email ),
 			'user_email'    => wp_privacy_anonymize_data( 'email', $user->email ),
 			'first_name'    => wp_privacy_anonymize_data( 'text', $user->first_name ),
 			'last_name'     => wp_privacy_anonymize_data( 'text', $user->last_name ),
