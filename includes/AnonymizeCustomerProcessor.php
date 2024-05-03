@@ -174,10 +174,8 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 
 			$success = $wpdb->update(
 				$wpdb->users,
-				['user_login' => $userdata['user_email']],
-				['ID' => $result],
-				['%s'],
-				['%d']
+				array( 'user_login' => $userdata['user_email'] ),
+				array( 'ID' => $result )
 			);
 
 			if ( ! $success ) {
