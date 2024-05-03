@@ -142,12 +142,12 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 	/**
 	 * Anonymize all data for single user.
 	 *
-	 * @param WP_User    $user The user to be anonymized.
-	 * @throws Exception Database error.
+	 * @param \WP_User    $user The user to be anonymized.
+	 * @throws \Exception Database error.
 	 */
-	private function process_item( WP_User $user ) {
-		global $wpdb;
+	private function process_item( \WP_User $user ) {
 
+		global $wpdb;
 
 		// Use Woo built-in tools to erase customer data.
 		\WC_Privacy_Erasers::customer_data_erase( $user->email );
