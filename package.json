@@ -1,6 +1,6 @@
 {
   "name": "anonymize-woocommerce",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "description": "Tool to anonymize WooCommerce customer and order data",
   "main": "index.js",
   "scripts": {
