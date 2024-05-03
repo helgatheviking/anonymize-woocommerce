@@ -112,7 +112,7 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 				$ids[] = $user->ID;
 				$this->process_item( $user );
 			} catch ( Exception $ex ) {
-				\wc_get_logger()->error( StringUtil::class_name_without_namespace( self::class ) . ": when anonymizing user with id {$user->ID}: {$ex->getMessage()}" );
+				\wc_get_logger()->error( StringUtil::class_name_without_namespace( self::class ) . ": when anonymizing user with id {$user->ID}: {$ex->getMessage()}", array( 'source' => 'anonymize-woocommerce' ) );
 			}
 		}
 
