@@ -113,8 +113,6 @@ function register_tool( $tools ) {
  */
 function start_processors() {
 
-	wc_get_logger()->debug('startprocessors', array('kathy'));
-
 	$batch_processor = wc_get_container()->get( \Automattic\WooCommerce\Internal\BatchProcessing\BatchProcessingController::class );
 
 	$batch_processor->enqueue_processor( AnonymizeCustomerProcessor::class );
@@ -127,8 +125,6 @@ function start_processors() {
  * Stop our processors
  */
 function stop_processors() {
-
-	wc_get_logger()->debug('stop processors', array('kathy'));
 
 	$batch_processor = wc_get_container()->get( \Automattic\WooCommerce\Internal\BatchProcessing\BatchProcessingController::class );
 

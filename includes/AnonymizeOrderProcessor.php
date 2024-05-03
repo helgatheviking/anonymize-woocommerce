@@ -96,8 +96,6 @@ class AnonymizeOrderProcessor implements BatchProcessorInterface, RegisterHooksI
 
 		$ids = [];
 
-		wc_get_logger()->debug('process a batch', array('kathy'));
-
 		if ( empty( $batch ) ) {
 			return;
 		}

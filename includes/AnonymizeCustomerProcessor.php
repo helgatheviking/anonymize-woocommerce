@@ -77,7 +77,6 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 	public function get_next_batch_to_process( int $size ): array {
 		global $wpdb;
 
-		wc_get_logger()->debug('get next USER batch to process', array('kathy'));
 
 		return get_users( array(
 			'role__not_in' => array( 'administrator', 'shop_manager' ),
@@ -103,7 +102,6 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 		add_filter( 'send_email_change_email', '__return_false' );
 		add_filter( 'send_password_change_email', '__return_false' );
 
-		wc_get_logger()->debug('process a batch of USERS', array('kathy'));
 
 		if ( empty( $batch ) ) {
 			return;
@@ -131,7 +129,6 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 	private function process_item( WP_User $user ) {
 		global $wpdb;
 
-		wc_get_logger()->log('convert an item', array('kathy'));
 
 		// Use Woo built-in tools to erase customer data.
 		\WC_Privacy_Erasers::customer_data_erase( $user->email );
