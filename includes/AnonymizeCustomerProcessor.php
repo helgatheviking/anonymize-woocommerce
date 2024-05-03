@@ -149,10 +149,11 @@ class AnonymizeCustomerProcessor implements BatchProcessorInterface, RegisterHoo
 
 		global $wpdb;
 
-		// Use Woo built-in tools to erase customer data.
-		\WC_Privacy_Erasers::customer_data_erase( $user->email );
-		\WC_Privacy_Erasers::download_data_eraser( $user->email );
-		\WC_Privacy_Erasers::customer_tokens_eraser( $user->email );
+		// Manually run Woo's customer data erasers. Order data is handled in the AnonymizeOrderProcessor.
+		// It proved really hard to run all the erasers properly (so WP handles it via ajax and nonces), so we're doing it manually.
+		\WC_Privacy_Erasers::customer_data_eraser( $user->email, 1 );
+		\WC_Privacy_Erasers::download_data_eraser( $user->email, 1 );
+		\WC_Privacy_Erasers::customer_tokens_eraser( $user->email, 1 );
 
 		// Build the new user data.
 		$userdata = array(
