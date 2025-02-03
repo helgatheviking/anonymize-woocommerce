@@ -13,7 +13,8 @@ This tool will:
 
 This will _not_ anonymize other plugins' data.
 
-⚠️ Currently this tool is blocked by https://github.com/woocommerce/woocommerce/issues/46974
+### Requires
+1. WooCommerce 9.0
 
 ### Usage
 
