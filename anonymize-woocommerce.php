@@ -9,13 +9,13 @@
  * License: GPL-3.0
  * Text Domain: anonymize-woocommerce
  * 
- * WC requires at least: 7.0.0
- * WC tested up to: 8.8.0
+ * WC requires at least: 9.0.0
+ * WC tested up to: 9.8.0
  *
  * Requires at least: 6.0.0
  * Tested up to: 6.5.0
  *
- * Requires PHP: 7.4
+ * Requires PHP: 8.0
  * 
  * Requires Plugins: woocommerce
  * 
